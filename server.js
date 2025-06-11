@@ -24,7 +24,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Add more headers
   optionsSuccessStatus: 200 // Add this for legacy browser support
 }));
-app.options('*' , cors());
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // For testing, use '*' (or your Vercel URLs for production)
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
