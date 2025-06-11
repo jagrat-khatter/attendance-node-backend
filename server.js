@@ -25,6 +25,15 @@ app.use(cors({
   optionsSuccessStatus: 200 // Add this for legacy browser support
 }));
 app.options('*' , cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // For testing, use '*' (or your Vercel URLs for production)
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(bodyParser.json()); // Converts incoming JSON to JS object
 
 // Middleware to avoid duplicate marking
