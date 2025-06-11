@@ -19,7 +19,6 @@ app.use(cors({
     'https://attendance-frontend-jagrat-khatter.vercel.app',
     'https://attendance-frontend-git-main-jagrat-khatter.vercel.app'
   ],
-  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add OPTIONS
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Add more headers
   optionsSuccessStatus: 200 // Add this for legacy browser support
