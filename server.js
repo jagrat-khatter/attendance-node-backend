@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5004;
 
 let prevName = "";
 
-const cors = require('cors');
+
 
 const allowedOrigins = [
   'http://localhost:3000',
