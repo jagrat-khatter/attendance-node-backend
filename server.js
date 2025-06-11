@@ -8,32 +8,28 @@ const PORT = process.env.PORT || 5004;
 
 let prevName = "";
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'https://attendance-frontend.vercel.app',
+  'https://attendance-frontend-jagrat-khatter.vercel.app',
+  'https://attendance-frontend-git-main-jagrat-khatter.vercel.app'
+];
+
 app.use(cors({
-  // origin: [
-  //   'http://localhost:3000',
-  //   'http://localhost:5173',
-  //   'https://attendance-frontend-jagrat-khatters-projects.vercel.app',
-  //   'https://attendance-frontend-git-main-jagrat-khatters-projects.vercel.app',
-  //   'https://attendance-frontend.vercel.app',
-  //   // Add these additional Vercel domains
-  //   'https://attendance-frontend-jagrat-khatter.vercel.app',
-  //   'https://attendance-frontend-git-main-jagrat-khatter.vercel.app'
-  // ],
-  origin : '*' ,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Add OPTIONS
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Add more headers
-  optionsSuccessStatus: 200 // Add this for legacy browser support
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or mobile apps)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS not allowed'), false);
+    }
+  },
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // For testing, use '*' (or your Vercel URLs for production)
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  next();
-});
 app.use(bodyParser.json()); // Converts incoming JSON to JS object
 
 // Middleware to avoid duplicate marking
