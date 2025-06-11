@@ -12,9 +12,14 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5173',
-    'https://attendance-frontend-jagrat-khatters-projects.vercel.app/',
-    'https://attendance-frontend-git-main-jagrat-khatters-projects.vercel.app/'
-  ]
+    'https://attendance-frontend-jagrat-khatters-projects.vercel.app', // Remove trailing slash
+    'https://attendance-frontend-git-main-jagrat-khatters-projects.vercel.app', // Remove trailing slash
+    'https://attendance-frontend.vercel.app', // Add this
+    '*' // Temporary - for testing only
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(bodyParser.json()); // Converts incoming JSON to JS object
 
