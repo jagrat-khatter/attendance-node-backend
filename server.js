@@ -24,6 +24,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Add more headers
   optionsSuccessStatus: 200 // Add this for legacy browser support
 }));
+app.options('*' , cors());
 app.use(bodyParser.json()); // Converts incoming JSON to JS object
 
 // Middleware to avoid duplicate marking
